@@ -1,23 +1,24 @@
+Parties = new Mongo.Collection("parties");
+
 //tells meteor -> only run this code on client side
 if (Meteor.isClient){
 	var app = angular.module('socially', ['angular-meteor']);
 	
-	app.controller('PartiesListCtrl', function ($scope) {
-		
-		$scope.parties = [
-		{
-			'name': 'Dubstep-Free Zone',
-			'description': 'Can we please just for an evening not listen to dubstep.'
-		},
-		{
-			'name': 'All dubstep all the time',
-			'description': 'Get it on!'
-		},
-		{
-			'name': 'Savage lounging',
-			'description': 'Leisure suit required. And only fiercest manners.'
+	app.directive('partiesList', function() {
+		return {
+		restrict: 'E',
+		templateUrl: 'parties-list.html',
+		controllerAs: 'partiesList',
+		controller: function($scope, $reactive) {
+			$reactive(this).attach($scope);
+	
+			this.helpers({
+				parties: function() {
+					return Parties.find({});
+				}
+			});
 		}
-		];
+		}
 	});
 	
 }
