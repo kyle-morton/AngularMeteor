@@ -25,13 +25,10 @@ angular.module('socially').config(function ($urlRouterProvider, $stateProvider, 
   $urlRouterProvider.otherwise("/parties");
 })
 
-.run(function($rootScope, $state){
-  $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
-      
-      console.log("ERROR: " + error);
+.run(function ($rootScope, $state) {
+    $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
       if (error === 'AUTH_REQUIRED') {
-        //if not logged in, redirect back to parties (change to parties state)
         $state.go('parties');
       }
     });
-});
+  });
