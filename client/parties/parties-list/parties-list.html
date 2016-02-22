@@ -5,9 +5,9 @@
   <input type="text" ng-model="partiesList.newParty.description" />
   <button ng-click="partiesList.addParty()">Add Party!</button>
 </form>
-<ul>
-  <li ui-sref="partyDetails({ partyId: party._id })" ng-repeat="party in partiesList.parties" style="cursor:pointer;">
-    {{party.name}} <p>{{party.description}}</p>
+<ul class="list-group">
+  <li class="list-group-item" ui-sref="partyDetails({ partyId: party._id })" ng-repeat="party in partiesList.parties" style="cursor:pointer;">
+    {{party.name}} <p>{{party.description}}</p><p>{{party.owner}}</p>
     <button ng-click="partiesList.removeParty(party)">X</button>
   </li>
 </ul>
