@@ -3,11 +3,15 @@
   <input type="text" ng-model="partiesList.newParty.name" />
   <label>Description: </label>
   <input type="text" ng-model="partiesList.newParty.description" />
+  <label>Public Party?</label>
+  <input type="checkbox" ng-model="partiesList.newParty.public">
   <button ng-click="partiesList.addParty()">Add Party!</button>
 </form>
 <ul class="list-group">
   <li class="list-group-item" ui-sref="partyDetails({ partyId: party._id })" ng-repeat="party in partiesList.parties" style="cursor:pointer;">
-    {{party.name}} <p>{{party.description}}</p><p>{{party.owner}}</p>
+    {{party.name}} <p>{{party.description}}</p>
+    <!--Public Party?<input type="checkbox" ng-model="party.public">
+    <br>-->
     <button ng-click="partiesList.removeParty(party)">X</button>
   </li>
 </ul>
