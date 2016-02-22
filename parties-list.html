@@ -6,9 +6,8 @@
   <button ng-click="partiesList.addParty()">Add Party!</button>
 </form>
 <ul>
-  <li ui-sref="partyDetails({ partyId: party._id })" ng-repeat="party in partiesList.parties">
-    {{party.name}}
-    <p>{{party.description}}</p>
+  <li ui-sref="partyDetails({ partyId: party._id })" ng-repeat="party in partiesList.parties" style="cursor:pointer;">
+    {{party.name}} <p>{{party.description}}</p>
     <button ng-click="partiesList.removeParty(party)">X</button>
   </li>
 </ul>
