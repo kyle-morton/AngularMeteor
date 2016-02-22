@@ -20,3 +20,5 @@ accounts-password
 dotansimha:accounts-ui-angular
 twbs:bootstrap
 accounts-github
+angularutils:pagination
+tmeasday:publish-counts

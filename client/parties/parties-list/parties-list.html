@@ -4,14 +4,22 @@
   <label>Description: </label>
   <input type="text" ng-model="partiesList.newParty.description" />
   <label>Public Party?</label>
-  <input type="checkbox" ng-model="partiesList.newParty.public">
-  <button ng-click="partiesList.addParty()">Add Party!</button>
+  <input type="checkbox" ng-model="partiesList.newParty.public" >
+  <button ng-click="partiesList.addParty()" class="btn btn-primary">Add Party!</button>
 </form>
+<h1>Parties:</h1>
+<div>
+  <input type="search" ng-model="partiesList.searchText" placeholder="Search" />
+  <select ng-model="partiesList.orderProperty" ng-change="partiesList.updateSort()">
+    <option value="1">Ascending</option>
+    <option value="-1">Descending</option>
+  </select>
+</div>
 <ul class="list-group">
-  <li class="list-group-item" ui-sref="partyDetails({ partyId: party._id })" ng-repeat="party in partiesList.parties" style="cursor:pointer;">
-    {{party.name}} <p>{{party.description}}</p>
-    <!--Public Party?<input type="checkbox" ng-model="party.public">
-    <br>-->
+  <li class="list-group-item" ui-sref="partyDetails({ partyId: party._id })" dir-paginate="party in partiesList.parties | itemsPerPage: partiesList.perPage" total-items="partiesList.partiesCount" style="cursor:pointer;">
+    {{party.name}}
+    <p>{{party.description}}</p>
     <button ng-click="partiesList.removeParty(party)">X</button>
   </li>
 </ul>
+<dir-pagination-controls on-page-change="partiesList.pageChanged(newPageNumber)"></dir-pagination-controls>

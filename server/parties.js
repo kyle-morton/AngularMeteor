@@ -1,7 +1,15 @@
 
 //publish collection so client side my subscribe
-Meteor.publish("parties", function () {
-  return Parties.find({
+Meteor.publish("parties", function (options, searchString) {
+  
+   console.log("Options/SearchString: " + options + " " + searchString);
+  
+   if (!searchString || searchString == null) {
+     searchString = '';
+   }
+  
+   var selector = {
+    name: { '$regex' : '.*' + searchString || '' + '.*', '$options' : 'i' },
     $or: [
       {
         $and: [
@@ -16,5 +24,9 @@ Meteor.publish("parties", function () {
         ]
       }
     ]
-  });
+  };
+  
+  Counts.publish(this, 'numberOfParties', Parties.find(selector), {noReady: true});
+  return Parties.find(selector, options);
+  
 });
